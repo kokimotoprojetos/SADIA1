@@ -1,6 +1,11 @@
 {
   "version": 2,
   "framework": null,
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php"
+    }
+  },
   "routes": [
     { "src": "^/?$", "dest": "/api/index.php" },
     { "src": "/(.*)\\.(css|js|png|jpg|jpeg|gif|ico|svg|woff2?|ttf|eot|map|json)$", "dest": "/$1.$2" },
