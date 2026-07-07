@@ -1,0 +1,8 @@
+<?php
+require __DIR__ . '/../KINGS/core/vendor/autoload.php';
+$app = require_once __DIR__ . '/../KINGS/core/bootstrap/app.php';
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+)->send();
+$kernel->terminate($request, $response);
