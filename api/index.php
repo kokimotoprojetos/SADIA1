@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 define('LARAVEL_START', microtime(true));
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 ini_set('display_errors', '1');
-putenv('APP_KEY=base64:RANDOMKEY1234567890abcdefghijklmnop=');
+putenv('APP_KEY=base64:VxaoMChWHud3bcKTOBgXhfvpLpadrEM2qqpM9Ls94ks=');
 putenv('APP_DEBUG=true');
 if (!is_dir("/tmp/storage")) {
     @mkdir("/tmp/storage", 0777, true);
