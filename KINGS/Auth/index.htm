@@ -1,0 +1,184 @@
+﻿
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    
+    <link rel="icon" type="image/png" href="../static/images/logo.png">
+    
+
+    <!-- Bootstrap -->
+    <link href="../npm/bootstrap%405.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="../ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="../npm/bootstrap%405.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+            <!-- Font Awesome  css-->
+     <link href="../static/fontawesomefree/css/fontawesome.css" rel="stylesheet" type="text/css">
+     <link href="../static/fontawesomefree/css/brands.css" rel="stylesheet" type="text/css">
+     <link href="../static/fontawesomefree/css/solid.css" rel="stylesheet" type="text/css">
+ 
+     <!-- Custom style  -->
+    <link rel="stylesheet" href="../static/css/login.css">
+    <title>Login</title>
+    
+<!-- ////////////////// CSS For Number field ////////////////// -->
+<style>
+    .no-arrow {
+        -moz-appearance: textfield;
+    }
+
+    .no-arrow::-webkit-inner-spin-button {
+        display: none;
+    }
+
+    .no-arrow::-webkit-outer-spin-button,
+    .no-arrow::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+
+</head>
+<body>
+
+
+<style>
+    /* Add your custom styles here */
+    .container {
+        background-color: #f2f2f2;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-card {
+        background-color: #ffffff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        padding: 30px;
+        width: 400px;
+        text-align: center;
+    }
+
+    .logo {
+        width: 150px;
+        margin-bottom: 20px;
+    }
+
+    .login-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input[type="number"],
+    .form-group input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .login-button {
+        background: linear-gradient(109.6deg, rgb(218, 185, 252) 11.2%, rgb(125, 89, 252) 91.1%);
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .login-button:hover {
+        background-color: #4fa43e;
+    }
+
+    .forgot-password,
+    .signup-link {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .signup-link a {
+        color: blue;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+<div class="container">
+    <div class="login-card">
+        <img src="../static/images/logo1.png" alt="Logo" class="logo">
+        <h2 class="login-title">Login</h2>
+        
+        <form class="login-form" method="POST" action="/Auth/" id="loginForm">
+            <input type="hidden" name="csrfmiddlewaretoken" value="wKzJZwWNeissr3NHmZZ81DlQONilXyfzuvZI83M8JuocYlgfUJyyGgfSaSG2WLvw">
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input class="no-arrow" type="number" name="phone" maxlength="10" minlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="phone" placeholder="Enter your phone number" required="">
+            </div>
+            <span id="error_phonelenght" style="display: none; color: red;font-size: 13px;"></span>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required="">
+            </div>
+            <input class="login-button w-100 text-center" value="Login" type="submit" id="submitBtn">
+
+            <div class="d-flex justify-content-between">
+                <div class="signup-link">
+                    <a href="forgetpassword/index.htm">Forgot Password?</a>
+                </div>
+                <div class="signup-link">
+                    <a href="signup/index.htm">Register</a>
+                </div>
+            </div>
+           
+        </form>
+    </div>
+</div>
+<script>
+    var error_phonelenght = document.getElementById('error_phonelenght');
+    var submitButton = document.getElementById("submitBtn");
+    var phone = document.getElementById('phone');
+
+    phone.onclick = function() {
+       error_phonelenght.style.display = 'none'
+    };
+   
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+    var minLength_phone = parseInt(phone.getAttribute('minlength'));
+    var phoneValue = phone.value.trim();
+
+    if (phoneValue.length < minLength_phone) {
+        event.preventDefault(); // Prevent form submission
+        error_phonelenght.style.display = 'block';
+        error_phonelenght.textContent = 'Please enter valid phone number. \n Phone number must be ' + minLength_phone + ' digit long.';
+    } 
+    else if (phoneValue[0] === '0') {
+        event.preventDefault(); // Prevent form submission
+        error_phonelenght.style.display = 'block';
+        error_phonelenght.textContent = 'Phone number first number cannot be 0';
+    }
+    else {
+        submitButton.disabled = true;
+        submitButton.value = "Login...";
+    }
+    });
+</script>
+</body>
+
+
+
+
+</body>
