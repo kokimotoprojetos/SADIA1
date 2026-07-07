@@ -1,4 +1,5 @@
 <?php
+echo "DEBUG START\n";
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 define('LARAVEL_START', microtime(true));
