@@ -1,0 +1,34 @@
+FROM php:8.2-apache
+
+# Install system dependencies and PHP extensions
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
+
+# Configure Apache to listen on the port provided by Vercel ($PORT)
+RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
+
+# Install Composer globally
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Copy the application code
+COPY . /var/www/html/
+
+# Make sure permissions are correct
+RUN chown -R www-data:www-data /var/www/html/
+
+# Run Composer install for Laravel backend inside 'core'
+WORKDIR /var/www/html/core
+RUN composer install --no-dev --optimize-autoloader
+
+# Return to web root
+WORKDIR /var/www/html
