@@ -10,11 +10,15 @@ if (!is_dir("/tmp/storage")) {
 if (file_exists($maintenance = __DIR__."/../core/storage/framework/maintenance.php")) {
     require $maintenance;
 }
-require __DIR__."/../core/vendor/autoload.php";
-$app = require_once __DIR__."/../core/bootstrap/app.php";
-$app->useStoragePath("/tmp/storage");
-$kernel = $app->make(Kernel::class);
-$response = $kernel->handle(
-    $request = Request::capture()
-)->send();
-$kernel->terminate($request, $response);
+try {
+    require __DIR__."/../core/vendor/autoload.php";
+    $app = require_once __DIR__."/../core/bootstrap/app.php";
+    $app->useStoragePath("/tmp/storage");
+    $kernel = $app->make(Kernel::class);
+    $response = $kernel->handle(
+        $request = Request::capture()
+    )->send();
+    $kernel->terminate($request, $response);
+} catch (\Throwable $e) {
+    echo "Error: " . $e->getMessage() . "\nFile: " . $e->getFile() . ":" . $e->getLine() . "\n" . $e->getTraceAsString();
+}
