@@ -1,8 +1,15 @@
 <?php
-require __DIR__ . '/../KINGS/core/vendor/autoload.php';
-$app = require_once __DIR__ . '/../KINGS/core/bootstrap/app.php';
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
+define("LARAVEL_START", microtime(true));
+if (file_exists($maintenance = __DIR__."/../core/storage/framework/maintenance.php")) {
+    require $maintenance;
+}
+require __DIR__."/../core/vendor/autoload.php";
+$app = require_once __DIR__."/../core/bootstrap/app.php";
+$app->useStoragePath("/tmp/storage");
+$kernel = $app->make(Kernel::class);
 $response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
+    $request = Request::capture()
 )->send();
 $kernel->terminate($request, $response);
