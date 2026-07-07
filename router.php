@@ -11,5 +11,5 @@ if (php_sapi_name() === 'cli-server') {
     }
 }
 
-require __DIR__.'/index.laravel.php';
+require __DIR__.'/core/front.php';
 ?>
