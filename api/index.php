@@ -1,5 +1,6 @@
 <?php
-echo "DEBUG START\n";
+header('Content-Type: application/json');
+echo json_encode(['status'=>'ok']);
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 define('LARAVEL_START', microtime(true));
