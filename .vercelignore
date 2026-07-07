@@ -1,0 +1,7 @@
+# Files and directories Vercel should ignore during upload
+.git
+node_modules
+*.log
+.idea
+.vscode
+.env
