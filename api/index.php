@@ -44,13 +44,74 @@ $app = require_once __DIR__."/../core/bootstrap/app.php";
 $app->useStoragePath('/tmp/storage');
 $app->instance('path.bootstrap', '/tmp/bootstrap-cache');
 
-// ── Rota de migração ──────────────────────────────────────────────────────
+// ── Rota de migração e setup ─────────────────────────────────────────────
 $uri = strtok($_SERVER['REQUEST_URI'] ?? '', '?');
 if ($uri === '/migrate') {
     header('Content-Type: text/plain');
     $artisan = $app->make(ConsoleKernel::class);
     $exitCode = $artisan->call('migrate', ['--force' => true]);
     echo "Exit Code: $exitCode\n" . $artisan->output();
+    exit;
+}
+if ($uri === '/setup') {
+    header('Content-Type: text/plain');
+    try {
+        $pdo = new PDO(
+            'mysql:host=' . (getenv('DB_HOST') ?: 'mysql-fc12bbd-kokimot.b.aivencloud.com') . ';port=' . (getenv('DB_PORT') ?: '28994') . ';dbname=' . (getenv('DB_DATABASE') ?: 'defaultdb'),
+            getenv('DB_USERNAME') ?: 'avnadmin',
+            getenv('DB_PASSWORD') ?: '',
+            [PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false]
+        );
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $pdo->exec("CREATE TABLE IF NOT EXISTS `general_settings` (
+            `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+            `site_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+            `cur_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+            `cur_sym` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+            `email_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+            `email_template` text COLLATE utf8mb4_unicode_ci,
+            `sms_api` text COLLATE utf8mb4_unicode_ci,
+            `base_color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+            `secondary_color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+            `mail_config` text COLLATE utf8mb4_unicode_ci,
+            `sms_config` text COLLATE utf8mb4_unicode_ci,
+            `global_shortcodes` text COLLATE utf8mb4_unicode_ci,
+            `firebase_config` text COLLATE utf8mb4_unicode_ci,
+            `off_day` text COLLATE utf8mb4_unicode_ci,
+            `f_charge` decimal(18,8) NOT NULL DEFAULT 0.00000000,
+            `p_charge` decimal(18,8) NOT NULL DEFAULT 0.00000000,
+            `signup_bonus_amount` decimal(18,2) NOT NULL DEFAULT 0.00,
+            `signup_bonus_control` tinyint(1) NOT NULL DEFAULT 0,
+            `push_notify` tinyint(1) NOT NULL DEFAULT 0,
+            `kv` tinyint(1) NOT NULL DEFAULT 0,
+            `ev` tinyint(1) NOT NULL DEFAULT 0,
+            `en` tinyint(1) NOT NULL DEFAULT 1,
+            `sv` tinyint(1) NOT NULL DEFAULT 0,
+            `sn` tinyint(1) NOT NULL DEFAULT 0,
+            `b_transfer` tinyint(1) NOT NULL DEFAULT 0,
+            `promotional_tool` tinyint(1) NOT NULL DEFAULT 0,
+            `holiday_withdraw` tinyint(1) NOT NULL DEFAULT 0,
+            `force_ssl` tinyint(1) NOT NULL DEFAULT 0,
+            `secure_password` tinyint(1) NOT NULL DEFAULT 0,
+            `registration` tinyint(1) NOT NULL DEFAULT 1,
+            `agree` tinyint(1) NOT NULL DEFAULT 0,
+            `maintenance_mode` tinyint(1) NOT NULL DEFAULT 0,
+            `language_switch` tinyint(1) NOT NULL DEFAULT 0,
+            `created_at` timestamp NULL DEFAULT NULL,
+            `updated_at` timestamp NULL DEFAULT NULL,
+            PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+
+        $stmt = $pdo->query("SELECT COUNT(*) FROM `general_settings`");
+        if ($stmt->fetchColumn() == 0) {
+            $pdo->exec("INSERT INTO `general_settings` (`site_name`, `cur_text`, `cur_sym`, `base_color`, `secondary_color`, `registration`) VALUES ('SADIA', 'USD', '$', '000000', '000000', 1)");
+        }
+
+        echo "Tables created successfully!";
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
     exit;
 }
 
