@@ -2,7 +2,6 @@
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
-ob_start();
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 ini_set('display_errors', '1');
 
@@ -45,16 +44,7 @@ $app->useStoragePath('/tmp/storage');
 $app->instance('path.bootstrap', '/tmp/bootstrap-cache');
 
 $kernel = $app->make(Kernel::class);
-try {
-    $response = $kernel->handle(
-        $request = Request::capture()
-    )->send();
-    $kernel->terminate($request, $response);
-} catch (\Throwable $e) {
-    http_response_code(500);
-    header('Content-Type: text/plain');
-    echo "Error: " . $e->getMessage() . "\n";
-    echo "File: " . $e->getFile() . ":" . $e->getLine() . "\n";
-    echo "Trace:\n" . $e->getTraceAsString();
-}
-ob_end_flush();
+$response = $kernel->handle(
+    $request = Request::capture()
+)->send();
+$kernel->terminate($request, $response);
