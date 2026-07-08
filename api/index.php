@@ -6,6 +6,39 @@ use Illuminate\Http\Request;
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 ini_set('display_errors', '1');
 
+// ── Static asset serving ─────────────────────────────────────────────────
+$uri = strtok($_SERVER['REQUEST_URI'] ?? '', '?');
+$filePath = __DIR__ . '/..' . $uri;
+
+if (is_file($filePath) && substr($filePath, -4) !== '.php') {
+    $ext = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+    $mimeTypes = [
+        'css'   => 'text/css',
+        'js'    => 'application/javascript',
+        'png'   => 'image/png',
+        'jpg'   => 'image/jpeg',
+        'jpeg'  => 'image/jpeg',
+        'gif'   => 'image/gif',
+        'svg'   => 'image/svg+xml',
+        'ico'   => 'image/x-icon',
+        'woff'  => 'font/woff',
+        'woff2' => 'font/woff2',
+        'ttf'   => 'font/ttf',
+        'eot'   => 'application/vnd.ms-fontobject',
+        'json'  => 'application/json',
+        'txt'   => 'text/plain',
+        'map'   => 'application/json',
+        'webp'  => 'image/webp',
+    ];
+    $mime = $mimeTypes[$ext] ?? 'application/octet-stream';
+
+    header('Content-Type: ' . $mime);
+    header('Cache-Control: public, max-age=31536000');
+    header('Content-Length: ' . filesize($filePath));
+    readfile($filePath);
+    exit;
+}
+
 putenv('APP_KEY=' . (getenv('APP_KEY') ?: 'base64:VxaoMChWHud3bcKTOBgXhfvpLpadrEM2qqpM9Ls94ks='));
 putenv('APP_DEBUG=true');
 putenv('APP_ENV=production');
@@ -45,7 +78,6 @@ $app->useStoragePath('/tmp/storage');
 $app->instance('path.bootstrap', '/tmp/bootstrap-cache');
 
 // ── Rota de migração e setup ─────────────────────────────────────────────
-$uri = strtok($_SERVER['REQUEST_URI'] ?? '', '?');
 if ($uri === '/migrate') {
     header('Content-Type: text/plain');
     $artisan = $app->make(ConsoleKernel::class);
