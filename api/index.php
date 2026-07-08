@@ -70,6 +70,8 @@ if ($uri === '/setup') {
         $sql = preg_replace('/^\s*SET\s+.*?;\s*$/m', '', $sql);
         $sql = preg_replace('/^\s*START TRANSACTION;\s*$/m', '', $sql);
         $sql = preg_replace('/^\s*COMMIT;\s*$/m', '', $sql);
+        $sql = preg_replace('/CREATE\s+TABLE\s+/i', 'CREATE TABLE IF NOT EXISTS ', $sql);
+        $sql = preg_replace('/INSERT\s+INTO\s+/i', 'INSERT IGNORE INTO ', $sql);
         $pdo->query('SET NAMES utf8mb4');
         $pdo->exec($sql);
 
