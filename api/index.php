@@ -19,16 +19,25 @@ if (file_exists($maintenance = __DIR__."/../core/storage/framework/maintenance.p
     require $maintenance;
 }
 
+echo "BEFORE_VENDOR\n";
 try {
     require __DIR__."/../core/vendor/autoload.php";
+    echo "AFTER_VENDOR\n";
     $app = require_once __DIR__."/../core/bootstrap/app.php";
+    echo "AFTER_APP\n";
     $app->useStoragePath("/tmp/storage");
     $kernel = $app->make(Kernel::class);
+    echo "AFTER_KERNEL\n";
     $response = $kernel->handle(
         $request = Request::capture()
     )->send();
     $kernel->terminate($request, $response);
 } catch (\Throwable $e) {
-    echo "Error: " . $e->getMessage() . "\nFile: " . $e->getFile() . ":" . $e->getLine() . "\n" . $e->getTraceAsString();
+    http_response_code(200);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo "=== ERROR ===\n";
+    echo $e->getMessage() . "\n";
+    echo "File: " . $e->getFile() . ":" . $e->getLine() . "\n";
+    echo $e->getTraceAsString() . "\n";
 }
 
