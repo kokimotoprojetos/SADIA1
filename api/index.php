@@ -71,6 +71,12 @@ if ($uri === '/setup') {
         $sql = preg_replace('/CREATE\s+TABLE\s+(IF NOT EXISTS\s+)?/i', 'CREATE TABLE IF NOT EXISTS ', $sql);
         $sql = preg_replace('/INSERT\s+(IGNORE\s+)?INTO\s+/i', 'INSERT IGNORE INTO ', $sql);
         $pdo->query('SET NAMES utf8mb4');
+
+        $tables = $pdo->query("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = '" . (getenv('DB_DATABASE') ?: 'defaultdb') . "'")->fetchAll(PDO::FETCH_COLUMN);
+        foreach ($tables as $table) {
+            $pdo->exec("DROP TABLE IF EXISTS `$table`");
+        }
+
         $statements = preg_split('/;\s*\n/', $sql);
         $count = 0;
         foreach ($statements as $stmt) {
@@ -80,7 +86,7 @@ if ($uri === '/setup') {
             $count++;
         }
 
-        echo "Database setup completed successfully!";
+        echo "Database setup completed! Dropped " . count($tables) . " tables, executed $count statements.";
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
