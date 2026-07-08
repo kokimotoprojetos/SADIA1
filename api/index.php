@@ -2,7 +2,8 @@
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
-error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+ob_start();
+error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 putenv('APP_KEY=base64:VxaoMChWHud3bcKTOBgXhfvpLpadrEM2qqpM9Ls94ks=');
@@ -50,3 +51,4 @@ $response = $kernel->handle(
     $request = Request::capture()
 )->send();
 $kernel->terminate($request, $response);
+ob_end_flush();
