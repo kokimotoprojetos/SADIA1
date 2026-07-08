@@ -11,7 +11,9 @@
 |
 */
 
-$app = new Illuminate\Foundation\Application(
+require_once __DIR__ . '/VercelApplication.php';
+
+$app = new VercelApplication(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
