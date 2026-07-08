@@ -44,6 +44,9 @@ $app = require_once __DIR__."/../core/bootstrap/app.php";
 $app->useStoragePath('/tmp/storage');
 $app->instance('path.bootstrap', '/tmp/bootstrap-cache');
 
+// Forçar debug
+$app->make('config')->set('app.debug', true);
+
 $kernel = $app->make(Kernel::class);
 try {
     $response = $kernel->handle(
