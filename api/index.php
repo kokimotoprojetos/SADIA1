@@ -65,20 +65,15 @@ if ($uri === '/setup') {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = file_get_contents(__DIR__ . '/../install/database.sql');
-        $statements = explode(';', $sql);
-        $count = 0;
-        foreach ($statements as $stmt) {
-            $stmt = trim($stmt);
-            if (!empty($stmt) && stripos($stmt, 'CREATE TABLE') !== false) {
-                $stmt = preg_replace('/^\s*CREATE\s+TABLE\s+/i', 'CREATE TABLE IF NOT EXISTS ', $stmt);
-            }
-            if (!empty($stmt)) {
-                $pdo->exec($stmt);
-                $count++;
-            }
-        }
+        $sql = preg_replace('/^--.*$/m', '', $sql);
+        $sql = preg_replace('/\/\*.*?\*\//s', '', $sql);
+        $sql = preg_replace('/^\s*SET\s+.*?;\s*$/m', '', $sql);
+        $sql = preg_replace('/^\s*START TRANSACTION;\s*$/m', '', $sql);
+        $sql = preg_replace('/^\s*COMMIT;\s*$/m', '', $sql);
+        $pdo->query('SET NAMES utf8mb4');
+        $pdo->exec($sql);
 
-        echo "Executed $count statements successfully!";
+        echo "Database setup completed successfully!";
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
