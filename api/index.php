@@ -64,51 +64,21 @@ if ($uri === '/setup') {
         );
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $pdo->exec("CREATE TABLE IF NOT EXISTS `general_settings` (
-            `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-            `site_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `cur_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `cur_sym` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `email_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `email_template` text COLLATE utf8mb4_unicode_ci,
-            `sms_api` text COLLATE utf8mb4_unicode_ci,
-            `base_color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `secondary_color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `mail_config` text COLLATE utf8mb4_unicode_ci,
-            `sms_config` text COLLATE utf8mb4_unicode_ci,
-            `global_shortcodes` text COLLATE utf8mb4_unicode_ci,
-            `firebase_config` text COLLATE utf8mb4_unicode_ci,
-            `off_day` text COLLATE utf8mb4_unicode_ci,
-            `f_charge` decimal(18,8) NOT NULL DEFAULT 0.00000000,
-            `p_charge` decimal(18,8) NOT NULL DEFAULT 0.00000000,
-            `signup_bonus_amount` decimal(18,2) NOT NULL DEFAULT 0.00,
-            `signup_bonus_control` tinyint(1) NOT NULL DEFAULT 0,
-            `push_notify` tinyint(1) NOT NULL DEFAULT 0,
-            `kv` tinyint(1) NOT NULL DEFAULT 0,
-            `ev` tinyint(1) NOT NULL DEFAULT 0,
-            `en` tinyint(1) NOT NULL DEFAULT 1,
-            `sv` tinyint(1) NOT NULL DEFAULT 0,
-            `sn` tinyint(1) NOT NULL DEFAULT 0,
-            `b_transfer` tinyint(1) NOT NULL DEFAULT 0,
-            `promotional_tool` tinyint(1) NOT NULL DEFAULT 0,
-            `holiday_withdraw` tinyint(1) NOT NULL DEFAULT 0,
-            `force_ssl` tinyint(1) NOT NULL DEFAULT 0,
-            `secure_password` tinyint(1) NOT NULL DEFAULT 0,
-            `registration` tinyint(1) NOT NULL DEFAULT 1,
-            `agree` tinyint(1) NOT NULL DEFAULT 0,
-            `maintenance_mode` tinyint(1) NOT NULL DEFAULT 0,
-            `language_switch` tinyint(1) NOT NULL DEFAULT 0,
-            `created_at` timestamp NULL DEFAULT NULL,
-            `updated_at` timestamp NULL DEFAULT NULL,
-            PRIMARY KEY (`id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
-
-        $stmt = $pdo->query("SELECT COUNT(*) FROM `general_settings`");
-        if ($stmt->fetchColumn() == 0) {
-            $pdo->exec("INSERT INTO `general_settings` (`site_name`, `cur_text`, `cur_sym`, `base_color`, `secondary_color`, `registration`) VALUES ('SADIA', 'USD', '$', '000000', '000000', 1)");
+        $sql = file_get_contents(__DIR__ . '/../install/database.sql');
+        $statements = explode(';', $sql);
+        $count = 0;
+        foreach ($statements as $stmt) {
+            $stmt = trim($stmt);
+            if (!empty($stmt) && stripos($stmt, 'CREATE TABLE') !== false) {
+                $stmt = preg_replace('/^\s*CREATE\s+TABLE\s+/i', 'CREATE TABLE IF NOT EXISTS ', $stmt);
+            }
+            if (!empty($stmt)) {
+                $pdo->exec($stmt);
+                $count++;
+            }
         }
 
-        echo "Tables created successfully!";
+        echo "Executed $count statements successfully!";
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
