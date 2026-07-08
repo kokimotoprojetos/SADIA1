@@ -2,6 +2,15 @@
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+ini_set('display_errors', '1');
+
+putenv('APP_KEY=base64:VxaoMChWHud3bcKTOBgXhfvpLpadrEM2qqpM9Ls94ks=');
+putenv('APP_DEBUG=true');
+putenv('APP_ENV=production');
+putenv('DB_CONNECTION=sqlite');
+putenv('DB_DATABASE=:memory:');
+
 define('LARAVEL_START', microtime(true));
 
 // ── Vercel serverless: criar pastas gravávels em /tmp ─────────────────────────
