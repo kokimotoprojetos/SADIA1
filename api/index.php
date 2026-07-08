@@ -60,7 +60,10 @@ if ($uri === '/setup') {
             'mysql:host=' . (getenv('DB_HOST') ?: 'mysql-fc12bbd-kokimot.b.aivencloud.com') . ';port=' . (getenv('DB_PORT') ?: '28994') . ';dbname=' . (getenv('DB_DATABASE') ?: 'defaultdb'),
             getenv('DB_USERNAME') ?: 'avnadmin',
             getenv('DB_PASSWORD') ?: '',
-            [PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false]
+            [
+                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+                PDO::MYSQL_ATTR_MULTI_STATEMENTS => true,
+            ]
         );
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -68,7 +71,14 @@ if ($uri === '/setup') {
         $sql = preg_replace('/CREATE\s+TABLE\s+(IF NOT EXISTS\s+)?/i', 'CREATE TABLE IF NOT EXISTS ', $sql);
         $sql = preg_replace('/INSERT\s+(IGNORE\s+)?INTO\s+/i', 'INSERT IGNORE INTO ', $sql);
         $pdo->query('SET NAMES utf8mb4');
-        $pdo->exec($sql);
+        $statements = preg_split('/;\s*\n/', $sql);
+        $count = 0;
+        foreach ($statements as $stmt) {
+            $stmt = trim($stmt);
+            if ($stmt === '') continue;
+            $pdo->exec($stmt . ';');
+            $count++;
+        }
 
         echo "Database setup completed successfully!";
     } catch (Exception $e) {
