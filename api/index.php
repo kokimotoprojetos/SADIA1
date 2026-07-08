@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Http\Request;
 
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
@@ -42,6 +43,16 @@ $app = require_once __DIR__."/../core/bootstrap/app.php";
 // Redirecionar storage e bootstrap/cache para /tmp (gravável na Vercel)
 $app->useStoragePath('/tmp/storage');
 $app->instance('path.bootstrap', '/tmp/bootstrap-cache');
+
+// ── Rota de migração ──────────────────────────────────────────────────────
+$uri = strtok($_SERVER['REQUEST_URI'] ?? '', '?');
+if ($uri === '/migrate') {
+    header('Content-Type: text/plain');
+    $artisan = $app->make(ConsoleKernel::class);
+    $exitCode = $artisan->call('migrate', ['--force' => true]);
+    echo "Exit Code: $exitCode\n" . $artisan->output();
+    exit;
+}
 
 $kernel = $app->make(Kernel::class);
 $response = $kernel->handle(
