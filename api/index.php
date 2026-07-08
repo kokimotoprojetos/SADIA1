@@ -27,6 +27,7 @@ $tmpDirs = [
     '/tmp/storage/framework/views',
     '/tmp/storage/logs',
     '/tmp/bootstrap-cache',
+    '/tmp/bootstrap-cache/cache',
 ];
 foreach ($tmpDirs as $dir) {
     if (!is_dir($dir)) {
