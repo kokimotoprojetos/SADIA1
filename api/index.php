@@ -86,7 +86,7 @@ if ($uri === '/setup') {
             $count++;
         }
 
-        $pdo->exec("UPDATE `general_settings` SET `active_template` = 'invester' WHERE `active_template` IS NULL OR `active_template` = ''");
+        $pdo->exec("UPDATE `general_settings` SET `active_template` = 'invester'");
 
         echo "Database setup completed! Dropped " . count($tables) . " tables, executed $count statements.";
     } catch (Exception $e) {
