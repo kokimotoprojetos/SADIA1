@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: text/plain');
-echo "WORKING";
+require __DIR__."/../core/vendor/autoload.php";
+echo "AUTOLOAD_OK";
 
 
