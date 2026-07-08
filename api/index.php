@@ -65,13 +65,8 @@ if ($uri === '/setup') {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = file_get_contents(__DIR__ . '/../install/database.sql');
-        $sql = preg_replace('/^--.*$/m', '', $sql);
-        $sql = preg_replace('/\/\*.*?\*\//s', '', $sql);
-        $sql = preg_replace('/^\s*SET\s+.*?;\s*$/m', '', $sql);
-        $sql = preg_replace('/^\s*START TRANSACTION;\s*$/m', '', $sql);
-        $sql = preg_replace('/^\s*COMMIT;\s*$/m', '', $sql);
-        $sql = preg_replace('/CREATE\s+TABLE\s+/i', 'CREATE TABLE IF NOT EXISTS ', $sql);
-        $sql = preg_replace('/INSERT\s+INTO\s+/i', 'INSERT IGNORE INTO ', $sql);
+        $sql = preg_replace('/CREATE\s+TABLE\s+(IF NOT EXISTS\s+)?/i', 'CREATE TABLE IF NOT EXISTS ', $sql);
+        $sql = preg_replace('/INSERT\s+(IGNORE\s+)?INTO\s+/i', 'INSERT IGNORE INTO ', $sql);
         $pdo->query('SET NAMES utf8mb4');
         $pdo->exec($sql);
 
