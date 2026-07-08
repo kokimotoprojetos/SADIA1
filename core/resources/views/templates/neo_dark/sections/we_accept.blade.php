@@ -18,7 +18,7 @@
                         @foreach($methods as $method)
                         <div class="payment-thumb">
                             <a href="javascript:void(0)">
-                                <img src="{{getImage('assets/images/frontend/we_accept/'.$method->data_values->image,'75x75')}}" alt="sponsor">
+                                <img src="{{getImage('assets/images/frontend/we_accept/'.$method->data_values->image,'75x75')}}" alt="{{ __('sponsor') }}">
                             </a>
                         </div>
                         @endforeach

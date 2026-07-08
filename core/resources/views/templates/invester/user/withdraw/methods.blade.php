@@ -4177,7 +4177,7 @@ a:hover, a:active {
     <div class="space-50"></div>
     <div class="recharge-head">
         <div class="product-tab">
-            <a href="" class="cur">BANK</a>
+            <a href="" class="cur">{{ __('Banco') }}</a>
           
         </div>
         <div class="space-20"></div>
@@ -4186,7 +4186,7 @@ a:hover, a:active {
                 {{ $general->cur_sym }} {{ showAmount(auth()->user()->interest_wallet) }}
               
             </span>
-            <label>Available Balance</label>
+            <label>{{ __('Saldo disponível') }}</label>
         </div>
           <form action="{{route('user.withdraw.money')}}" method="post">
                         @csrf
@@ -4196,11 +4196,11 @@ a:hover, a:active {
             <div class="recharge-amount">
                 <i>{{ $general->cur_sym }}</i>
 
-                <input type="number" placeholder="please enter withdraw amount" step="any" name="amount"  value="{{ old('amount') }}" autocomplete="off" required>
+                <input type="number" placeholder="{{ __('digite o valor do saque') }}" step="any" name="amount"  value="{{ old('amount') }}" autocomplete="off" required>
             </div>
         </div>
         <div class="recharge-method" style="display:none">
-            <label>Withdraw method</label>
+            <label>{{ __('Método de saque') }}</label>
                <select class="form-control form--control form-select" name="method_code" required>
                                 
                                 @foreach($withdrawMethod as $data)

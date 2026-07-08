@@ -129,24 +129,24 @@
             let interestAmount = parseFloat(plan.interest);
 
             if (plan.fixed_amount > 0) {
-                modal.find('.investAmountRange').text(`Invest: ${symbol}${fixedAmount}`);
+                modal.find('.investAmountRange').text(`{{ __("Invest") }}: ${symbol}${fixedAmount}`);
                 modal.find('[name=amount]').val(parseFloat(plan.fixed_amount).toFixed(2));
                 modal.find('[name=amount]').attr('readonly',true);
             }else{
-                modal.find('.investAmountRange').text(`Invest: ${symbol}${minimumAmount} - ${symbol}${maximumAmount}`);
+                modal.find('.investAmountRange').text(`{{ __("Invest") }}: ${symbol}${minimumAmount} - ${symbol}${maximumAmount}`);
                 modal.find('[name=amount]').val('');
                 modal.find('[name=amount]').removeAttr('readonly');
             }
 
             if (plan.interest_type == '1') {
-                modal.find('.interestDetails').html(`<strong> Interest: ${interestAmount}% </strong>`);
+                modal.find('.interestDetails').html(`<strong> {{ __("Interest") }}: ${interestAmount}% </strong>`);
             } else {
-                modal.find('.interestDetails').html(`<strong> Interest: ${interestAmount} ${currency}  </strong>`);
+                modal.find('.interestDetails').html(`<strong> {{ __("Interest") }}: ${interestAmount} ${currency}  </strong>`);
             }
             if (plan.lifetime == '0') {
-                modal.find('.interestValidity').html(`<strong>  Per ${plan.time} hours ,  ${plan.repeat_time} times</strong>`);
+                modal.find('.interestValidity').html(`<strong>  {{ __("Per") }} ${plan.time} {{ __("hours") }} ,  ${plan.repeat_time} {{ __("times") }}</strong>`);
             } else {
-                modal.find('.interestValidity').html(`<strong>  Per ${plan.time} hours,  life time </strong>`);
+                modal.find('.interestValidity').html(`<strong>  {{ __("Per") }} ${plan.time} {{ __("hours") }},  {{ __("life time") }} </strong>`);
             }
 
         });

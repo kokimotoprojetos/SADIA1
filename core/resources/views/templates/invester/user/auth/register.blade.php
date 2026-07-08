@@ -35,10 +35,10 @@
             <div class="login_input_con">
                 <i>+234</i>
                 <input type="number" placeholder="@lang('Phone Number')"      name="username" value="{{ old('username') }}"  >
-                 <input type="hidden"   placeholder="Enter Email"     name="email" value="user@gmail.com" required>
+                 <input type="hidden"   placeholder="{{ __("Enter Email") }}"     name="email" value="user@gmail.com" required>
                <input type="hidden" name="mobile_code">
                                         <input type="hidden" name="country_code">
-                                        <input type="hidden" name="mobile" value="00000000000"  placeholder=" Whatsapp Number"          required>
+                                        <input type="hidden" name="mobile" value="00000000000"  placeholder="{{ __("Whatsapp Number") }}"          required>
             
             </div>
         </div>

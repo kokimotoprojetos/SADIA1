@@ -5,7 +5,7 @@
             <nav class="navbar navbar-expand-xl p-0 align-items-center">
                 <a class="site-logo site-title" href="{{ route('home') }}"><img
                         src="{{ getImage(getFilePath('logoIcon').'/logo.png') }}"
-                        alt="site-logo"></a>
+                        alt="@lang('site-logo')"></a>
                 <ul class="account-menu responsive-account-menu ms-3">
                     @guest
                         <li class="icon"><a href="{{ route('user.login') }}"><i class="las la-user"></i></a></li>

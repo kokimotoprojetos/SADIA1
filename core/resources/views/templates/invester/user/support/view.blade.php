@@ -15,7 +15,7 @@
                         </h5>
                         @if ($myTicket->status != 3 && $myTicket->user)
                             <button class="btn btn--danger btn-sm confirmationBtn" type="button"
-                                data-question="@lang('Are you sure to close this ticket?')"
+                                data-question="@lang('Tem certeza de que deseja fechar este ticket?')"
                                 data-action="{{ route('ticket.close', $myTicket->id) }}"><i
                                     class="fa fa-lg fa-times-circle"></i>
                             </button>
@@ -35,22 +35,22 @@
                                 </div>
                                 <div class="text-end">
                                     <a href="javascript:void(0)" class="btn btn--base btn-sm addFile"><i
-                                            class="fa fa-plus"></i> @lang('Add New')</a>
+                                            class="fa fa-plus"></i> @lang('Adicionar Novo')</a>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">@lang('Attachments')</label> <small
-                                        class="text-danger">@lang('Max 5 files can be uploaded'). @lang('Maximum upload size is')
+                                    <label class="form-label">@lang('Anexos')</label> <small
+                                        class="text-danger">@lang('Máximo de 5 arquivos podem ser enviados'). @lang('O tamanho máximo de upload é')
                                         {{ ini_get('upload_max_filesize') }}</small>
                                     <input type="file" name="attachments[]" class="form-control form--control" />
                                     <div id="fileUploadsContainer"></div>
                                     <p class="my-2 ticket-attachments-message text-muted">
-                                        @lang('Allowed File Extensions'): .@lang('jpg'), .@lang('jpeg'),
+                                        @lang('Extensões de Arquivo Permitidas'): .@lang('jpg'), .@lang('jpeg'),
                                         .@lang('png'), .@lang('pdf'), .@lang('doc'),
                                         .@lang('docx')
                                     </p>
                                 </div>
                                 <button type="submit" class="btn btn--base w-100"> <i class="fa fa-reply"></i>
-                                    @lang('Reply')</button>
+                                    @lang('Responder')</button>
                             </form>
                         @endif
                     </div>
@@ -66,14 +66,14 @@
                                     </div>
                                     <div class="col-md-9">
                                         <p class="text-muted fw-bold my-3">
-                                            @lang('Posted on') {{ $message->created_at->format('l, dS F Y @ H:i') }}
+                                            @lang('Publicado em') {{ $message->created_at->format('l, dS F Y @ H:i') }}
                                         </p>
                                         <p>{{ $message->message }}</p>
                                         @if ($message->attachments->count() > 0)
                                             <div class="mt-2">
                                                 @foreach ($message->attachments as $k => $image)
                                                     <a href="{{ route('ticket.download', encrypt($image->id)) }}"
-                                                        class="me-3"><i class="fa fa-file"></i> @lang('Attachment')
+                                                        class="me-3"><i class="fa fa-file"></i> @lang('Anexo')
                                                         {{ ++$k }} </a>
                                                 @endforeach
                                             </div>
@@ -85,18 +85,18 @@
                                     style="background-color: #ffd96729">
                                     <div class="col-md-3 border-end text-end">
                                         <h5 class="my-3">{{ $message->admin->name }}</h5>
-                                        <p class="lead text-muted">@lang('Staff')</p>
+                                        <p class="lead text-muted">@lang('Equipe')</p>
                                     </div>
                                     <div class="col-md-9">
                                         <p class="text-muted fw-bold my-3">
-                                            @lang('Posted on')
+                                            @lang('Publicado em')
                                             {{ $message->created_at->format('l, dS F Y @ H:i') }}</p>
                                         <p>{{ $message->message }}</p>
                                         @if ($message->attachments->count() > 0)
                                             <div class="mt-2">
                                                 @foreach ($message->attachments as $k => $image)
                                                     <a href="{{ route('ticket.download', encrypt($image->id)) }}"
-                                                        class="me-3"><i class="fa fa-file"></i> @lang('Attachment')
+                                                        class="me-3"><i class="fa fa-file"></i> @lang('Anexo')
                                                         {{ ++$k }} </a>
                                                 @endforeach
                                             </div>

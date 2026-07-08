@@ -18,7 +18,7 @@ $methods = getContent('we_accept.element', false, null, true);
                     @foreach ($methods as $method)
                         <div class="single-slide">
                             <div class="brand-item">
-                                <img src="{{ getImage('assets/images/frontend/we_accept/' . $method->data_values->image, '75x75') }}" alt="image">
+                                <img src="{{ getImage('assets/images/frontend/we_accept/' . $method->data_values->image, '75x75') }}" alt="@lang('image')">
                             </div><!-- brand-item end -->
                         </div>
                     @endforeach

@@ -102,7 +102,7 @@
                           var msg = `${response.description}`
                           $('.profit-input').text(msg);
                           if(response.netProfit){
-                              $('.period').text('Net Profit '+response.netProfit);
+                              $('.period').text('{{ __('Net Profit') }} '+response.netProfit);
                           }
                       }
                   }

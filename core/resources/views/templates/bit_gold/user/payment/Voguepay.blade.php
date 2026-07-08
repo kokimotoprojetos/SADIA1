@@ -53,14 +53,14 @@
                 developer_code: '60a4ecd9bbc77',
                 custom: "{{ $data->custom }}",
                 customer: {
-                  name: 'Customer name',
-                  country: 'Country',
-                  address: 'Customer address',
-                  city: 'Customer city',
-                  state: 'Customer state',
-                  zipcode: 'Customer zip/post code',
-                  email: 'example@example.com',
-                  phone: 'Customer phone'
+                  name: '{{ __('Customer name') }}',
+                  country: '{{ __('Country') }}',
+                  address: '{{ __('Customer address') }}',
+                  city: '{{ __('Customer city') }}',
+                  state: '{{ __('Customer state') }}',
+                  zipcode: '{{ __('Customer zip/post code') }}',
+                  email: '{{ __('example@example.com') }}',
+                  phone: '{{ __('Customer phone') }}'
                 },
                 closed:closedFunction,
                 success:successFunction,

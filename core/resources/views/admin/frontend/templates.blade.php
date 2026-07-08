@@ -91,7 +91,7 @@
 @push('breadcrumb-plugins')
 <div>
     @if(!extension_loaded('zip'))
-    <span class="text--danger mx-3"><span class="fw-bold text--danger">PHP-zip</span> Extension is required</span>
+    <span class="text--danger mx-3"><span class="fw-bold text--danger">@lang('PHP-zip')</span> @lang('Extension is required')</span>
     <button type="button" disabled class="btn btn-outline--primary btn-sm" data-bs-toggle="modal" data-bs-target="#uploadTemplate"><i class="las la-puzzle-piece"></i>@lang('Upload Template')</button>
     @else
     <button type="button" class="btn btn-outline--primary btn-sm" data-bs-toggle="modal" data-bs-target="#uploadTemplate"><i class="las la-puzzle-piece"></i>@lang('Upload Template')</button>

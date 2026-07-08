@@ -4,7 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <div class="product-tab">
-        <a href="https://coworker-ng.com/product?m=0"  class="cur" >{{ @lang('Product') }}<i></i></a>
+        <a href="https://coworker-ng.com/product?m=0"  class="cur" >{{ @lang('Produto') }}<i></i></a>
                             </div>
     <div class="cate-list" style="width:100%; margin-right:4% !important; overflow-y: none !important;">
         <ul >
@@ -20,12 +20,12 @@
                             @endif）</h6>
                         <dl>
                             <dd>
-                                <span>20Days</span>
-                                <label>{{ @lang('Income Cycle') }}</label>
+                                <span>{{ __('20 Dias') }}</span>
+                                <label>{{ @lang('Ciclo de Renda') }}</label>
                             </dd>
                                                             <dd>
                                     <span>{{ $plan->interest_type != 1 ? $general->cur_sym : '' }} {{ showAmount($plan->interest) }}{{ $plan->interest_type == 1 ? '%' : '' }} </span>
-                                    <label>{{ @lang('Daily Income') }}</label>
+                                    <label>{{ @lang('Renda Diária') }}</label>
                                 </dd>
                                                         <dd>
                                 <span> @if ($plan->lifetime == 0)
@@ -33,13 +33,13 @@
                         {{ __($plan->interest * $plan->repeat_time) }}{{ $plan->interest_type == 1 ? '%' : ' ' . __($general->cur_text) }}
                         @lang('')
                     @else
-                        @lang('Unlimited')
+                        @lang('Ilimitado')
                     @endif </span>
-                                <label>{{ @lang('Total Income') }}</label>
+                                <label>{{ @lang('Renda Total') }}</label>
                             </dd>
                         </dl>
                                                                                     <button type="button"  data-bs-toggle="modal"
-                data-plan="{{ $plan }}" data-bs-target="#investModal" class="rent investModal">Rent now</button>
+                data-plan="{{ $plan }}" data-bs-target="#investModal" class="rent investModal">{{ __('Alugar agora') }}</button>
                                                                             </a>
                 </li>
                 @endforeach
@@ -53,25 +53,25 @@
                     <li class="on">
                 <a href="{{ route('user.home') }}">
                     <img src="/static/home/img/foot01.png">
-                    <p>Home</p>
+                    <p>{{ __('Início') }}</p>
                 </a>
             </li>
                             <li>
                 <a href="{{ route('plan') }}">
                     <img src="/static/home/img/foot2.png">
-                    <p>Product</p>
+                    <p>{{ __('Produto') }}</p>
                 </a>
             </li>
                             <li>
                 <a href="{{ route('ticket.index') }}">
                     <img src="/static/home/img/foot3.png"> 
-                    <p>About</p>
+                    <p>{{ __('Sobre') }}</p>
                 </a>
             </li>
                             <li>
                 <a href="{{ route('user.twofactor') }}">
                     <img src="/static/home/img/foot04.png">
-                    <p>Mine</p>
+                    <p>{{ __('Meu') }}</p>
                 </a>
             </li>
             </ul>
@@ -4249,9 +4249,9 @@ a:hover, a:active {
             <div class="modal-header">
                 <h5 class="modal-title">
                     @if (auth()->check())
-                        @lang('Confirm to invest on') <span class="planName"></span>
+                        @lang('Confirme o investimento em') <span class="planName"></span>
                     @else
-                        @lang('At first sign in your account')
+                        @lang('Primeiro faça login na sua conta')
                     @endif
                 </h5>
                 <button type="button" class="close" data-bs-dismiss="modal">
@@ -4266,11 +4266,11 @@ a:hover, a:active {
                         <div class="form-group">
                          
   <div class="form-group" style="display: none;">
-                            <label>@lang('Select Wallet')</label>
+                            <label>@lang('Selecionar Carteira')</label>
                             <select class="form-control form--control form-select" name="wallet_type" required>
                              
                                 @if(auth()->user()->deposit_wallet > 0)
-                                <option value="deposit_wallet">@lang('Invest Now '.$general->cur_sym.showAmount(auth()->user()->deposit_wallet))</option>
+                                <option value="deposit_wallet">@lang('Investir Agora '.$general->cur_sym.showAmount(auth()->user()->deposit_wallet))</option>
                                 @endif
                          
                                 @foreach($gatewayCurrency as $data)
@@ -4279,10 +4279,10 @@ a:hover, a:active {
                             </select>
           
                             
-                                              <code class="gateway-info rate-info d-none">@lang('Rate'): 1 {{ $general->cur_text }} = <span class="gateway-rate"></span> <span class="method_currency"></span></code>
+                                               <code class="gateway-info rate-info d-none">@lang('Taxa'): 1 {{ $general->cur_text }} = <span class="gateway-rate"></span> <span class="method_currency"></span></code>
                         </div>
                         <div class="form-group" style="display: none;">
-                            <label>@lang('Invest Amount')</label>
+                            <label>@lang('Valor do Investimento')</label>
                             <div class="input-group">
                                 
                                 
@@ -4305,10 +4305,10 @@ a:hover, a:active {
                 
                 <div class="modal-footer">
                     @if (auth()->check())
-                        <button type="button" class="buy-btn btn btn-primary text-bg-primary" data-bs-dismiss="modal">@lang('No')</button>
-                        <button type="submit" class="buy-btn btn btn-primary text-bg-primary">@lang('Yes')</button>
+                        <button type="button" class="buy-btn btn btn-primary text-bg-primary" data-bs-dismiss="modal">@lang('Não')</button>
+                        <button type="submit" class="buy-btn btn btn-primary text-bg-primary">@lang('Sim')</button>
                     @else
-                        <a href="{{ route('user.login') }}" class="btn btn--base w-100">@lang('At first sign in your account')</a>
+                        <a href="{{ route('user.login') }}" class="btn btn--base w-100">@lang('Primeiro faça login na sua conta')</a>
                     @endif
                 </div>
             </form>

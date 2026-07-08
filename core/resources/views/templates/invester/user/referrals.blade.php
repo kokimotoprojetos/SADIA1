@@ -15,7 +15,7 @@
 
     <div class="team-tab">
                     <a href="" class="team-tab-item active">
-                                    Downline's Details
+                                    {{ __("Downline's Details") }}
                             </a>
 
             </div>
@@ -33,25 +33,25 @@
                     <li class="on">
                 <a href="{{ route('user.home') }}">
                     <img src="/static/home/img/foot01.png">
-                    <p>Home</p>
+                    <p>{{ __("Home") }}</p>
                 </a>
             </li>
                             <li>
                 <a href="{{ route('plan') }}">
                     <img src="/static/home/img/foot2.png">
-                    <p>Product</p>
+                    <p>{{ __("Product") }}</p>
                 </a>
             </li>
                             <li>
                 <a href="{{ route('ticket.index') }}">
                     <img src="/static/home/img/foot3.png"> 
-                    <p>About</p>
+                    <p>{{ __("About") }}</p>
                 </a>
             </li>
                             <li>
                 <a href="{{ route('user.twofactor') }}">
                     <img src="/static/home/img/foot04.png">
-                    <p>Mine</p>
+                    <p>{{ __("Mine") }}</p>
                 </a>
             </li>
             </ul>

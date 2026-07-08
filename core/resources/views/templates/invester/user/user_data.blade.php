@@ -22,7 +22,7 @@
  
      <!-- Custom style  -->
     <link rel="stylesheet" href="{{asset ('static/css/login.css')}}">
-    <title>Login</title>
+    <title>{{ __("Login") }}</title>
     
 <!-- ////////////////// CSS For Number field ////////////////// -->
 <style>
@@ -122,7 +122,7 @@
 <body>
 <div class="container">
     <div class="login-card">
-        <img src="{{ getImage(getFilePath('logoIcon').'/logo_2.png') }}" alt="Logo" class="logo">
+        <img src="{{ getImage(getFilePath('logoIcon').'/logo_2.png') }}" alt="{{ __("Logo") }}" class="logo">
         <h2 class="login-title">{{ @lang('Basic Information') }}</h2>
         
      <form action="{{ route('user.data.submit') }}" method="POST" class="account-form">
@@ -163,7 +163,7 @@
                 
                 
                 </div>
-            <input class="login-button w-100 text-center" value="Go To Hone" type="submit" id="submitBtn">
+            <input class="login-button w-100 text-center" value="{{ __("Go To Hone") }}" type="submit" id="submitBtn">
 
             <div class="d-flex justify-content-between">
                 <div class="signup-link">

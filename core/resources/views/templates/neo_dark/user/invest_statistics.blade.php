@@ -14,7 +14,7 @@
                 document.getElementById(elementId).innerHTML = days + "d: " + hours + "h " + minutes + "m " + seconds + "s ";
                 if (distance < 0) {
                     clearInterval(x);
-                    document.getElementById(elementId).innerHTML = "COMPLETE";
+                    document.getElementById(elementId).innerHTML = '{{ __("COMPLETE") }}';
                 }
                 tms--;
             }, 1000);

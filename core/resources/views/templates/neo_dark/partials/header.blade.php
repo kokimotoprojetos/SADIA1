@@ -30,7 +30,7 @@
             <nav class="navbar navbar-expand-xl align-items-center">
 
                 <a href="{{ route('home') }}" class="site-logo site-title">
-                    <img src="{{ getImage(getFilePath('logoIcon').'/logo.png') }}" alt="logo">
+                    <img src="{{ getImage(getFilePath('logoIcon').'/logo.png') }}" alt="{{ __('logo') }}">
                 </a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

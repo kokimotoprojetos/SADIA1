@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
-                    <a href="{{ route('home') }}" class="site-logo"><img src="{{ getImage(getFilePath('logoIcon') .'/logo.png') }}" alt="image"></a>
+                    <a href="{{ route('home') }}" class="site-logo"><img src="{{ getImage(getFilePath('logoIcon') .'/logo.png') }}" alt="@lang('image')"></a>
                     <ul class="footer-short-menu d-flex flex-wrap justify-content-center mt-3">
                         @foreach($links as $link)
                             <li><a href="{{ route('policy.pages',[slug($link->data_values->title),$link->id]) }}">{{ __($link->data_values->title) }}</a></li>

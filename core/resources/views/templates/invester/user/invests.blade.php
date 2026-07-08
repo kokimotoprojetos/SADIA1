@@ -36,7 +36,7 @@
  <span>₦ {{ showAmount($invest->amount) }}</span>
  </div>
  <div class="record-dd">
-     <span>Next Return :{{ showDateTime($invest->next_time, 'M d, Y h:i A') }}</span>
+     <span>{{ __("Next Return") }} :{{ showDateTime($invest->next_time, 'M d, Y h:i A') }}</span>
  <span>@if ($invest->status == 1)
                                     <svg class="custom-progress">
                                         <circle class="progress-circle" cx="20" cy="22" r="16" style="stroke-dasharray: 100; stroke-dashoffset: calc(100 - (({{ diffDatePercent($start, $invest->next_time) }} * 100)/100))" ; />

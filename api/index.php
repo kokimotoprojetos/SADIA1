@@ -43,8 +43,8 @@ putenv('APP_KEY=' . (getenv('APP_KEY') ?: 'base64:VxaoMChWHud3bcKTOBgXhfvpLpadrE
 putenv('APP_DEBUG=true');
 putenv('APP_ENV=production');
 putenv('DB_CONNECTION=mysql');
-putenv('DB_HOST=mysql-fc12bbd-kokimot.b.aivencloud.com');
-putenv('DB_PORT=28994');
+putenv('DB_HOST=mysql-8d3653e-suportekokimoto-67b6.h.aivencloud.com');
+putenv('DB_PORT=13654');
 putenv('DB_DATABASE=defaultdb');
 putenv('DB_USERNAME=avnadmin');
 putenv('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT=false');
@@ -89,7 +89,7 @@ if ($uri === '/setup') {
     header('Content-Type: text/plain');
     try {
         $pdo = new PDO(
-            'mysql:host=' . (getenv('DB_HOST') ?: 'mysql-fc12bbd-kokimot.b.aivencloud.com') . ';port=' . (getenv('DB_PORT') ?: '28994') . ';dbname=' . (getenv('DB_DATABASE') ?: 'defaultdb'),
+            'mysql:host=' . (getenv('DB_HOST') ?: 'mysql-8d3653e-suportekokimoto-67b6.h.aivencloud.com') . ';port=' . (getenv('DB_PORT') ?: '13654') . ';dbname=' . (getenv('DB_DATABASE') ?: 'defaultdb'),
             getenv('DB_USERNAME') ?: 'avnadmin',
             getenv('DB_PASSWORD') ?: '',
             [

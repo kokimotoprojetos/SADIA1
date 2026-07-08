@@ -110,7 +110,7 @@
             var fileAdded = 0;
             $('.addFile').on('click',function(){
                 if (fileAdded >= 4) {
-                    notify('error','You\'ve added maximum number of file');
+                    notify('error','{{ __('You\'ve added maximum number of file') }}');
                     return false;
                 }
                 fileAdded++;

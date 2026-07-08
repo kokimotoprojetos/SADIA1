@@ -1,5 +1,5 @@
 <div class="mb-3 mt-3">
-    <label>@lang('Verification Code')</label>
+    <label>@lang('Código de Verificação')</label>
     <div class="verification-code">
         <input type="text" name="code" id="verification-code" class="form-control overflow-hidden" required autocomplete="off">
         <div class="boxes">

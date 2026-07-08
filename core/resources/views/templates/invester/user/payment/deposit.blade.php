@@ -13,7 +13,7 @@
     <div class="space-50"></div>
     <div class="recharge-head">
         <div class="product-tab">
-            <a href="{{route('user.deposit.index')}}" class="cur">BANK</a>
+            <a href="{{route('user.deposit.index')}}" class="cur">{{ __('Banco') }}</a>
           
         </div>
         <div class="space-20"></div>

@@ -25,7 +25,7 @@
                                 <div class="col-md-6">
                                     <label class="form-label">@lang('Expiration Date')</label>
                                     <input type="tel" class="form-control form--control" name="billing-cc-exp"
-                                        value="{{ old('billing-cc-exp') }}" placeholder="e.g. MM/YY" autocomplete="off"
+                                        value="{{ old('billing-cc-exp') }}" placeholder="{{ __('ex.: MM/AA') }}" autocomplete="off"
                                         required />
                                 </div>
                                 <div class="col-md-6 ">

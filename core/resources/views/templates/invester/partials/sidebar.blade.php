@@ -108,7 +108,7 @@
         
         xindun
         
-        -  Home
+        -  {{ __('Início') }}
     </title>
     <script>
         document.onreadystatechange = function () {
@@ -151,7 +151,7 @@
                 
                     <div class="profile_info align-self-center">
                         <div class="dropdown">
-                 <h1 style="font-family: unset;">{{ @lang('Hello') }}</h1>
+                 <h1 style="font-family: unset;">{{ @lang('Olá') }}</h1>
 
                         </div>
                     </div>
@@ -166,7 +166,7 @@
         <nav class="bottom-navbar mt-5">
             <ul>
                 <li class="nav-hover"><a href="{{ route('user.home') }}"><img src="{{asset ('core/img/home.jpg')}}"></i><strong></strong></a></li>
-                <!-- <li><a href="/withdraw/"><i class="fa-solid fa-wallet"></i>{{ @lang('Withdraw') }}</a></li> -->
+                <!-- <li><a href="/withdraw/"><i class="fa-solid fa-wallet"></i>{{ @lang('Sacar') }}</a></li> -->
                 <li class="nav-hover"><a href="{{ route('user.invest.statistics') }}"><img src="{{asset ('core/img/project.jpg')}}"></i><strong></strong></a></li>
                 <li class="nav-hover"><a href="{{ route('user.referrals') }}"><img src="{{asset ('core/img/pl.jpg')}}"></i><strong></strong></a></li>
                 <li class="nav-hover"><a href="{{ route('user.twofactor') }}"><img src="{{asset ('core/img/mine.jpg')}}"></i><strong></strong></a></li>

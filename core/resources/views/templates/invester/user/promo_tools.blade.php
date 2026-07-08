@@ -5,7 +5,7 @@
 
         <div class="mb-4">
             <h3 class="mb-2">{{ __($pageTitle) }}</h3>
-            <p>@lang('You can use below HTML codes to your website. These HTML codes will help to increase your referrals.')</p>
+            <p>@lang('Você pode usar os códigos HTML abaixo no seu site. Estes códigos HTML ajudarão a aumentar suas referências.')</p>
         </div>
 
         <hr>
@@ -45,7 +45,7 @@
             border-radius: 0;
         }
         .referral-form:before {
-            content: 'Copy';
+            content: 'Copiar';
             position: absolute;
             height: 0%;
             width: 100%;
@@ -66,7 +66,7 @@
         }
         .referral-form.copied-referral:before{
             height: 100%;
-            content: 'Copied';
+            content: 'Copiado';
         }
     </style>
 @endpush

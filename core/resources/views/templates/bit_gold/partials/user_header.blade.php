@@ -6,7 +6,7 @@
     <div class="header__bottom">
         <div class="container">
             <nav class="navbar navbar-expand-xl p-0 align-items-center">
-                <a class="site-logo site-title" href="{{ route('home') }}"><img src="{{ getImage(getFilePath('logoIcon') . '/logo.png') }}" alt="site-logo"></a>
+                <a class="site-logo site-title" href="{{ route('home') }}"><img src="{{ getImage(getFilePath('logoIcon') . '/logo.png') }}" alt="@lang('site-logo')"></a>
                 <ul class="account-menu responsive-account-menu ms-3">
                     <li class="icon"><a href="{{ route('user.home') }}"><i class="las la-user"></i></a></li>
                 </ul>

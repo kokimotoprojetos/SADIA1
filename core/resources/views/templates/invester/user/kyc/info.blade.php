@@ -5,8 +5,8 @@
         <div class="mb-4">
             <div class="row">
                 <div class="col-md-8">
-                    <h3>@lang('KYC Data')</h3>
-                    <p>@lang('Your submitted KYC information is shown below. You couldn\'t change the data that you\'ve submitted. If the admin rejects your information, you\'ll be able to re-submit.')</p>
+                    <h3>@lang('Dados KYC')</h3>
+                    <p>@lang('Suas informações KYC enviadas são mostradas abaixo. Você não pode alterar os dados que enviou. Se o administrador rejeitar suas informações, você poderá reenviá-las.')</p>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                         @if($val->type == 'checkbox')
                             {{ implode(',',$val->value) }}
                         @elseif($val->type == 'file')
-                            <a href="{{ route('user.attachment.download',encrypt(getFilePath('verify').'/'.$val->value)) }}" class="me-3"><i class="fa fa-file"></i>  @lang('Attachment') </a>
+                            <a href="{{ route('user.attachment.download',encrypt(getFilePath('verify').'/'.$val->value)) }}" class="me-3"><i class="fa fa-file"></i>  @lang('Anexo') </a>
                         @else
                         <p>{{__($val->value)}}</p>
                         @endif
@@ -31,7 +31,7 @@
                   @endforeach
                 </ul>
                 @else
-                <h5 class="text-center">@lang('KYC data not found')</h5>
+                <h5 class="text-center">@lang('Dados KYC não encontrados')</h5>
                 @endif
             </div>
         </div>

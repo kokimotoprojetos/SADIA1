@@ -130,19 +130,19 @@ $pageTitle = 'wallet';
             <li>
                 <a href="{{route ('user.invest.log')}}">
                     <img src="/static/home/img/user01.png"/>
-                    <span>My Products</span>
+                    <span>{{ __("My Products") }}</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('user.referrals') }}">
                     <img src="/static/home/img/user02.png"/>
-                    <span>My Teams</span>
+                    <span>{{ __("My Teams") }}</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('user.transactions') }}">
                     <img src="/static/home/img/user03.png"/>
-                    <span>Cash Record</span>
+                    <span>{{ __("Cash Record") }}</span>
                 </a>
             </li>
           
@@ -173,25 +173,25 @@ $pageTitle = 'wallet';
                     <li class="on">
                 <a href="{{ route('user.home') }}">
                     <img src="/static/home/img/foot01.png">
-                    <p>Home</p>
+                    <p>{{ __("Home") }}</p>
                 </a>
             </li>
                             <li>
                 <a href="{{ route('plan') }}">
                     <img src="/static/home/img/foot2.png">
-                    <p>Product</p>
+                    <p>{{ __("Product") }}</p>
                 </a>
             </li>
                             <li>
                 <a href="{{ route('ticket.index') }}">
                     <img src="/static/home/img/foot3.png"> 
-                    <p>About</p>
+                    <p>{{ __("About") }}</p>
                 </a>
             </li>
                             <li>
                 <a href="{{ route('user.twofactor') }}">
                     <img src="/static/home/img/foot04.png">
-                    <p>Mine</p>
+                    <p>{{ __("Mine") }}</p>
                 </a>
             </li>
             </ul>

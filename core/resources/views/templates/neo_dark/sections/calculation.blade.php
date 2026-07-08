@@ -42,7 +42,7 @@ $calculationContent = getContent('calculation.content', true);
             </div>
             <div class="col-lg-4">
                 <div class="profit-thumb">
-                    <img src="{{getImage('assets/images/frontend/calculation/'.@$calculationContent->data_values->image)}}" alt="image">
+                    <img src="{{getImage('assets/images/frontend/calculation/'.@$calculationContent->data_values->image)}}" alt="{{ __('image') }}">
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@ $calculationContent = getContent('calculation.content', true);
                             var msg = `${response.description}`
                             $('.profit-input').text(msg);
                             if (response.netProfit) {
-                                $('.period').text('Net Profit ' + response.netProfit);
+                                $('.period').text('{{ __("Net Profit") }} ' + response.netProfit);
                             }
                         }
                     }

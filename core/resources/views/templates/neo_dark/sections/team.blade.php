@@ -20,7 +20,7 @@
                 <div class="team-card">
                     <div class="card-body">
                         <div class="card-thumb pb-0 mb-0">
-                            <img src="{{getImage('assets/images/frontend/team/'.$data->data_values->image)}}" alt="team">
+                            <img src="{{getImage('assets/images/frontend/team/'.$data->data_values->image)}}" alt="{{ __('team') }}">
                         </div>
                     </div>
                     <div class="card-footer">

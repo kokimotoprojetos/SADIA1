@@ -17,7 +17,7 @@
           <div class="col-xl-3 col-lg-4 col-sm-6">
             <div class="team-card">
               <div class="team-card__thumb">
-                <img src="{{ getImage('assets/images/frontend/team/'.@$teamElement->data_values->image,'280x296') }}" alt="image">
+                <img src="{{ getImage('assets/images/frontend/team/'.@$teamElement->data_values->image,'280x296') }}" alt="@lang('image')">
               </div>
               <div class="team-card__content">
                 <h4 class="name mb-1">{{ __(@$teamElement->data_values->name) }}</h4>

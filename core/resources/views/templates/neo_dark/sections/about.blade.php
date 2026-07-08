@@ -17,7 +17,7 @@ $aboutCaption = getContent('about.content', true);
             <div class="col-lg-6">
                 <div class="about-thumb">
                     <div class="thumb">
-                        <img src="{{ getImage('assets/images/frontend/about/' . @$aboutCaption->data_values->image) }}" alt="about">
+                        <img src="{{ getImage('assets/images/frontend/about/' . @$aboutCaption->data_values->image) }}" alt="{{ __('about') }}">
                     </div>
                 </div>
             </div>

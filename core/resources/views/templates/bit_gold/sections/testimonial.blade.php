@@ -24,7 +24,7 @@ $testimonialElements = getContent('testimonial.element',false,null,true);
                 </div>
                 <div class="testimonial-card__client">
                   <div class="thumb">
-                    <img src="{{ getImage('assets/images/frontend/testimonial/'.@$testimonialElement->data_values->image,'69x75') }}" alt="image">
+                    <img src="{{ getImage('assets/images/frontend/testimonial/'.@$testimonialElement->data_values->image,'69x75') }}" alt="@lang('image')">
                   </div>
                   <div class="content">
                     <h6 class="name">{{ __(@$testimonialElement->data_values->name) }}</h6>

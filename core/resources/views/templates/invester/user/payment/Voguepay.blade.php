@@ -51,14 +51,14 @@
                 developer_code: '60a4ecd9bbc77',
                 custom: "{{ $data->custom }}",
                 customer: {
-                  name: 'Customer name',
-                  country: 'Country',
-                  address: 'Customer address',
-                  city: 'Customer city',
-                  state: 'Customer state',
-                  zipcode: 'Customer zip/post code',
-                  email: 'example@example.com',
-                  phone: 'Customer phone'
+                  name: '{{ __("Nome do cliente") }}',
+                  country: '{{ __("País") }}',
+                  address: '{{ __("Endereço do cliente") }}',
+                  city: '{{ __("Cidade do cliente") }}',
+                  state: '{{ __("Estado do cliente") }}',
+                  zipcode: '{{ __("CEP do cliente") }}',
+                  email: '{{ __("exemplo@exemplo.com") }}',
+                  phone: '{{ __("Telefone do cliente") }}'
                 },
                 closed:closedFunction,
                 success:successFunction,
@@ -68,7 +68,7 @@
         (function ($) {
             $('#btn-confirm').on('click', function (e) {
                 e.preventDefault();
-                pay('Buy', {{ $data->Buy }});
+                pay('{{ __("Comprar") }}', {{ $data->Buy }});
             });
         })(jQuery);
     </script>

@@ -11,7 +11,7 @@
             <div class="row justify-content-lg-between align-items-center">
                 <div class="col-xl-5 col-lg-6">
                     <div class="signin-thumb">
-                        <img src="{{ getImage('assets/images/frontend/register/' . @$registerContent->data_values->image) }}" alt="image">
+                        <img src="{{ getImage('assets/images/frontend/register/' . @$registerContent->data_values->image) }}" alt="{{ __('image') }}">
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-6">

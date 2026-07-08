@@ -12,7 +12,7 @@
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label class="form-label">@lang('Name')</label>
+                                    <label class="form-label">@lang('Nome')</label>
                                     <input type="text" name="name"
                                         value="{{ @$user->firstname . ' ' . @$user->lastname }}"
                                         class="form-control form--control" required readonly>
@@ -24,20 +24,20 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label class="form-label">@lang('Subject')</label>
+                                    <label class="form-label">@lang('Assunto')</label>
                                     <input type="text" name="subject" value="{{ old('subject') }}"
                                         class="form-control form--control" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="form-label">@lang('Priority')</label>
+                                    <label class="form-label">@lang('Prioridade')</label>
                                     <select name="priority" class="form-select form--control" required>
-                                        <option value="3">@lang('High')</option>
-                                        <option value="2">@lang('Medium')</option>
-                                        <option value="1">@lang('Low')</option>
+                                        <option value="3">@lang('Alta')</option>
+                                        <option value="2">@lang('Média')</option>
+                                        <option value="1">@lang('Baixa')</option>
                                     </select>
                                 </div>
                                 <div class="col-12 form-group">
-                                    <label class="form-label">@lang('Message')</label>
+                                    <label class="form-label">@lang('Mensagem')</label>
                                     <textarea name="message" id="inputMessage" rows="6" class="form-control form--control" required>{{ old('message') }}</textarea>
                                 </div>
                             </div>
@@ -45,18 +45,18 @@
                             <div class="form-group">
                                 <div class="text-end">
                                     <button type="button" class="btn btn--base btn--sm addFile">
-                                        <i class="fa fa-plus"></i> @lang('Add New')
+                                        <i class="fa fa-plus"></i> @lang('Adicionar Novo')
                                     </button>
                                 </div>
                                 <div class="file-upload">
-                                    <label class="form-label">@lang('Attachments')</label> <small
-                                        class="text-danger">@lang('Max 5 files can be uploaded'). @lang('Maximum upload size is')
+                                    <label class="form-label">@lang('Anexos')</label> <small
+                                        class="text-danger">@lang('Máximo de 5 arquivos podem ser enviados'). @lang('O tamanho máximo de upload é')
                                         {{ ini_get('upload_max_filesize') }}</small>
                                     <input type="file" name="attachments[]" id="inputAttachments"
                                         class="form-control form--control mb-2" />
                                     <div id="fileUploadsContainer"></div>
                                     <p class="ticket-attachments-message text-muted">
-                                        @lang('Allowed File Extensions'): .@lang('jpg'), .@lang('jpeg'),
+                                        @lang('Extensões de Arquivo Permitidas'): .@lang('jpg'), .@lang('jpeg'),
                                         .@lang('png'), .@lang('pdf'), .@lang('doc'),
                                         .@lang('docx')
                                     </p>
@@ -66,7 +66,7 @@
 
                             <div class="form-group">
                                 <button class="btn btn--base  w-100" type="submit"><i
-                                        class="fa fa-paper-plane"></i>&nbsp;@lang('Submit')</button>
+                                        class="fa fa-paper-plane"></i>&nbsp;@lang('Enviar')</button>
                             </div>
                         </form>
                     </div>

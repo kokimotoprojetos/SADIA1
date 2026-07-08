@@ -369,14 +369,14 @@
 
         var options = {
             series: [{
-                name: 'Total Deposit',
+                name: '{{ __("Total Deposit") }}',
                 data: [
                     @foreach ($months as $month)
                         {{ getAmount(@$depositsMonth->where('months', $month)->first()->depositAmount) }},
                     @endforeach
                 ]
             }, {
-                name: 'Total Withdraw',
+                name: '{{ __("Total Withdraw") }}',
                 data: [
                     @foreach ($months as $month)
                         {{ getAmount(@$withdrawalMonth->where('months', $month)->first()->withdrawAmount) }},
@@ -663,7 +663,7 @@
                 enabled: false
             },
             series: [{
-                    name: "Plus Transactions",
+                    name: '{{ __("Plus Transactions") }}',
                     data: [
                         @foreach ($trxReport['date'] as $trxDate)
                             {{ @$plusTrx->where('date', $trxDate)->first()->amount ?? 0 }},
@@ -671,7 +671,7 @@
                     ]
                 },
                 {
-                    name: "Minus Transactions",
+                    name: '{{ __("Minus Transactions") }}',
                     data: [
                         @foreach ($trxReport['date'] as $trxDate)
                             {{ @$minusTrx->where('date', $trxDate)->first()->amount ?? 0 }},

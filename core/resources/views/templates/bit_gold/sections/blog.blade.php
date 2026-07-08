@@ -17,7 +17,7 @@ $blogContent = getContent('blog.content',true);
           <div class="col-lg-4 col-md-6">
             <div class="blog-card h-100">
               <div class="blog-card__thumb">
-                <img src="{{getImage('assets/images/frontend/blog/thumb_'.@$data->data_values->image,'460x240')}}" alt="image">
+                <img src="{{getImage('assets/images/frontend/blog/thumb_'.@$data->data_values->image,'460x240')}}" alt="@lang('image')">
               </div>
               <div class="blog-card__content">
                 <h5 class="blog-card__title mb-2"><a href="{{route('blog.details',[slug($data->data_values->title),$data->id])}}">{{__(@$data->data_values->title)}}</a></h5>

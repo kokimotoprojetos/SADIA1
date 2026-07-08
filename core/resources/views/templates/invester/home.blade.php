@@ -22,8 +22,8 @@
         <img style="border-radius:180px;" src="{{ getImage(getFilePath('logoIcon').'/logo_2.png') }}">
     </div>
     <div class="login-tab">
-        <a href="{{ route('user.login') }}">Sign In</a>  
-        <a href="{{ route('user.register') }}" class="cur">Sign Up</a>
+        <a href="{{ route('user.login') }}">{{ __('Entrar') }}</a>  
+        <a href="{{ route('user.register') }}" class="cur">{{ __('Cadastrar') }}</a>
     </div>
     <div class="space-20"></div>
     <div class="login_main">
@@ -31,7 +31,7 @@
             <img src="/static/home/img/icon01.png">
             <div class="login_input_con">
                 <i>+234</i>
-                <input type="number" name="username" placeholder="Enter your phone number" >
+                <input type="number" name="username" placeholder="{{ __('Digite o seu número de telefone') }}" >
             </div>
         </div>
               
@@ -43,14 +43,14 @@
         <div class="login_input">
             <img src="/static/home/img/icon02.png">
             <div class="login_input_con">
-                <input type="password" name="password" placeholder="please enter your password">
+                <input type="password" name="password" placeholder="{{ __('digite a sua senha') }}">
             </div>
         </div>
   
       
         <div class="space-30"></div>
         <div class="login_btn">
-            <button type="submit" id="submitBtn">Sign In</button>
+            <button type="submit" id="submitBtn">{{ __('Entrar') }}</button>
         </div>
     </div>
 </div>

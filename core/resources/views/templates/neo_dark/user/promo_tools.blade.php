@@ -15,7 +15,7 @@
                         <div class="referral-form card-body">
 
                             @php
-                                $string = '<a href="'.route('home').'?reference='.auth()->user()->username.'" target="_blank"> <img src="'.getImage(fileManager()->promotions()->path.  '/'. @$banner->banner) .'" alt="image"/></a>';
+                                $string = '<a href="'.route('home').'?reference='.auth()->user()->username.'" target="_blank"> <img src="'.getImage(fileManager()->promotions()->path.  '/'. @$banner->banner) .'" alt="{{ __('image') }}"/></a>';
                             @endphp
 
                             <textarea type="url" id="reflink{{ $banner->id }}" class="form--control form-control from-control-lg" rows="5" readonly>@php echo  $string @endphp</textarea>

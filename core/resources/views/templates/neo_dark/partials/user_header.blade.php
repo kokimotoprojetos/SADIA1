@@ -24,7 +24,7 @@
             <nav class="navbar navbar-expand-xl align-items-center">
 
                 <a href="{{url('/')}}" class="site-logo site-title">
-                    <img src="{{ getImage(getFilePath('logoIcon').'/logo.png') }}" alt="logo">
+                    <img src="{{ getImage(getFilePath('logoIcon').'/logo.png') }}" alt="{{ __('logo') }}">
                 </a>
 
 

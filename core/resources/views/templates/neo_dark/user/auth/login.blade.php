@@ -10,7 +10,7 @@
             <div class="row justify-content-lg-between align-items-center">
                 <div class="col-xl-5 col-lg-6">
                     <div class="signin-thumb">
-                        <img src="{{ getImage('assets/images/frontend/login/' . @$loginContent->data_values->image) }}" alt="image">
+                        <img src="{{ getImage('assets/images/frontend/login/' . @$loginContent->data_values->image) }}" alt="{{ __('image') }}">
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-6">
@@ -37,10 +37,10 @@
                                 </label>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-small w-100 btn-primary">{{ trans('Sign In') }}</button>
+                                <button type="submit" class="btn btn-success btn-small w-100 btn-primary">{{ __('Sign In') }}</button>
                             </div>
-                            <p>{{ trans('Forgot Your Password?') }}
-                                <a href="{{ route('user.password.request') }}" class="label-text base--color">{{ trans('Reset Now') }}</a>
+                            <p>{{ __('Forgot Your Password?') }}
+                                <a href="{{ route('user.password.request') }}" class="label-text base--color">{{ __('Reset Now') }}</a>
                             </p>
                         </form>
                     </div>

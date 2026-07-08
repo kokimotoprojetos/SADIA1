@@ -21,7 +21,7 @@
                     <div class="row gy-4">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>@lang('Name')</label>
+                                <label>@lang('Nome')</label>
                                 <input type="text" name="name" class="form-control form--control h-45" required>
                             </div>
                         </div>
@@ -33,21 +33,21 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label>@lang('Subject')</label>
+                                <label>@lang('Assunto')</label>
                                 <input type="text" name="subject" class="form-control form--control h-45" required>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label>@lang('Message')</label>
-                                <textarea class="form-control form--control" name="message" placeholder="@lang('Write down your message')..." required></textarea>
+                                <label>@lang('Mensagem')</label>
+                                <textarea class="form-control form--control" name="message" placeholder="@lang('Escreva a sua mensagem')..." required></textarea>
                             </div>
                         </div>
                         <div class="col-12">
                             <x-captcha />
                         </div>
                         <div class="col-12 text-end">
-                            <button type="submit" class="btn btn--base">@lang('Send Message')</button>
+                            <button type="submit" class="btn btn--base">@lang('Enviar Mensagem')</button>
                         </div>
                     </div>
                 </form>

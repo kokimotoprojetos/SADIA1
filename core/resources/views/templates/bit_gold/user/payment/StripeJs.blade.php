@@ -41,7 +41,7 @@
         (function ($) {
             "use strict";
             $('button[type="submit"]').addClass("btn--base w-100 mt-3");
-            $('button[type="submit"]').text("Pay Now");
+            $('button[type="submit"]').text("{{ __('Pay Now') }}");
             $('button[type="submit"]').removeClass("stripe-button-el");
         })(jQuery);
     </script>

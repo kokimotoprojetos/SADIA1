@@ -569,7 +569,7 @@
                                     ],
                                     pointBorderWidth: 0,
                                     data: response.invests,
-                                    label: 'Invests',
+                                    label: '{{ __("Invests") }}',
                                     fill: 'start'
                                 },
                                 {
@@ -583,14 +583,14 @@
                                     ],
                                     pointBorderWidth: 0,
                                     data: response.interests,
-                                    label: 'Interests',
+                                    label: '{{ __("Interests") }}',
                                     fill: 'start'
                                 }
                             ]
                         },
                         options: {
                             title: {
-                                text: 'fill: start',
+                                text: '{{ __("fill: start") }}',
                                 display: false
                             },
                             maintainAspectRatio: true,

@@ -24,7 +24,7 @@
                     <div class="testimonail-slider">
                         @foreach($testimonial as $data)
                         <div class="testimonial-single">
-                            <div class="client__thumb"><img src="{{getImage('assets/images/frontend/testimonial/'.@$data->data_values->image)}}" alt="image"></div>
+                            <div class="client__thumb"><img src="{{getImage('assets/images/frontend/testimonial/'.@$data->data_values->image)}}" alt="{{ __('image') }}"></div>
                             <i class="flaticon-quotation"></i>
                             <p> {{__(@$data->data_values->quote)}}</p>
                             <h4 class="client__name">{{__(@$data->data_values->author)}}</h4>

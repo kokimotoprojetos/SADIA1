@@ -54,7 +54,7 @@
         var amo = parseFloat($(this).val());
         var calculation = amo + ( parseFloat({{ $general->f_charge }}) + ( amo * parseFloat({{ $general->p_charge }}) ) / 100 );
         if (calculation) {
-            $('.calculation').text(calculation+' {{ $general->cur_text }} will cut from your selected wallet');
+            $('.calculation').text(calculation+' {{ $general->cur_text }} {{ __('will cut from your selected wallet') }}');
         }else{
             $('.calculation').text('');
         }

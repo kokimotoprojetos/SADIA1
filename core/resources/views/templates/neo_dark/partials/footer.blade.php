@@ -12,7 +12,7 @@
                 <div class="footer-widget">
                     <div class="about__widget">
                         <a href="{{route('home')}}" class="mb-3 mb-sm-4">
-                            <img src="{{ getImage(getFilePath('logoIcon') .'/logo.png') }}" alt="footer"
+                            <img src="{{ getImage(getFilePath('logoIcon') .'/logo.png') }}" alt="{{ __('footer') }}"
                                  class="max-250">
                         </a>
                         <p class="mt-3">{{ __(@$footer->data_values->content) }}</p>

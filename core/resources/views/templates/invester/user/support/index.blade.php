@@ -7,27 +7,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>{{ @lang('About Us') }}</title>
+    <title>{{ @lang('Sobre Nós') }}</title>
 </head>
  
 <body>
   
     <section class="about">
-        <h1>{{ @lang('About Us') }}</h1>
-        <p style="font-weight: bold">Kingscooking is a leading platform...</p>
+        <h1>{{ @lang('Sobre Nós') }}</h1>
+        <p style="font-weight: bold">{{ __('Kingscooking é uma plataforma líder...') }}</p>
         <div class="about-info">
             <div class="about-img">
              
             </div>
             <div>
-     <p>Kingscooking is a heart friendly oil company that provides mnaterials that is best for cooking, frying and bringing out everything in the best time, Trade Kingscooking oil products on kingscooking.com.ng to earn a particular profit on each investment</p>
+     <p>{{ __('A Kingscooking é uma empresa de óleo saudável que fornece os melhores materiais para cozinhar, fritar e realçar tudo no melhor tempo. Negocie produtos de óleo Kingscooking em kingscooking.com.ng para obter um lucro específico em cada investimento.') }}</p>
              
             </div>
         </div>
     </section>
  
     <section class="team">
-        <h1>{{ @lang('Gallery') }}</h1>
+        <h1>{{ @lang('Galeria') }}</h1>
         <div class="team-cards">
             <!-- Cards here -->
             <!-- Card 1 -->
@@ -44,7 +44,7 @@
     </section>
  
     <footer>
-        <p>© 2024b Kingscookng. All Rights Reserved.</p>
+        <p>{{ __('© 2024b Kingscookng. Todos os direitos reservados.') }}</p>
     </footer>
     <style>
         * {
