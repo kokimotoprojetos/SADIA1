@@ -4,16 +4,16 @@ use Illuminate\Http\Request;
 
 ob_start();
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
-ini_set('display_errors', '0');
+ini_set('display_errors', '1');
 
 putenv('APP_KEY=' . (getenv('APP_KEY') ?: 'base64:VxaoMChWHud3bcKTOBgXhfvpLpadrEM2qqpM9Ls94ks='));
-putenv('APP_DEBUG=' . (getenv('APP_DEBUG') ?: 'true'));
-putenv('APP_ENV=' . (getenv('APP_ENV') ?: 'production'));
-putenv('DB_CONNECTION=' . (getenv('DB_CONNECTION') ?: 'mysql'));
-putenv('DB_HOST=' . (getenv('DB_HOST') ?: 'mysql-fc12bbd-kokimot.b.aivencloud.com'));
-putenv('DB_PORT=' . (getenv('DB_PORT') ?: '28994'));
-putenv('DB_DATABASE=' . (getenv('DB_DATABASE') ?: 'defaultdb'));
-putenv('DB_USERNAME=' . (getenv('DB_USERNAME') ?: 'avnadmin'));
+putenv('APP_DEBUG=true');
+putenv('APP_ENV=production');
+putenv('DB_CONNECTION=mysql');
+putenv('DB_HOST=mysql-fc12bbd-kokimot.b.aivencloud.com');
+putenv('DB_PORT=28994');
+putenv('DB_DATABASE=defaultdb');
+putenv('DB_USERNAME=avnadmin');
 putenv('MYSQL_ATTR_SSL_VERIFY_SERVER_CERT=false');
 
 define('LARAVEL_START', microtime(true));
@@ -45,8 +45,16 @@ $app->useStoragePath('/tmp/storage');
 $app->instance('path.bootstrap', '/tmp/bootstrap-cache');
 
 $kernel = $app->make(Kernel::class);
-$response = $kernel->handle(
-    $request = Request::capture()
-)->send();
-$kernel->terminate($request, $response);
+try {
+    $response = $kernel->handle(
+        $request = Request::capture()
+    )->send();
+    $kernel->terminate($request, $response);
+} catch (\Throwable $e) {
+    http_response_code(500);
+    header('Content-Type: text/plain');
+    echo "Error: " . $e->getMessage() . "\n";
+    echo "File: " . $e->getFile() . ":" . $e->getLine() . "\n";
+    echo "Trace:\n" . $e->getTraceAsString();
+}
 ob_end_flush();
